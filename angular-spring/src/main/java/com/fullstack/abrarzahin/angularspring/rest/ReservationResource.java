@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fullstack.abrarzahin.angularspring.model.response.ReservationResponse;
+
 @RestController
-@RequestMapping("/room/reservation/v1")
+@RequestMapping(ResourceConstants.ROOM_RESERVATION_V1)
 
 public class ReservationResource {
 	@RequestMapping(path="",method= RequestMethod.GET, produces= MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -25,7 +27,7 @@ public class ReservationResource {
 			LocalDate checkout
 			
 			){
-		return new ResponseEntity<>(new ReservationResponse(),HttpStatus.OK)
+		return new ResponseEntity<>(new ReservationResponse(),HttpStatus.OK);
 		
 	}
 	
