@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fullstack.abrarzahin.angularspring.model.request.ReservationRequest;
 import com.fullstack.abrarzahin.angularspring.model.response.ReservationResponse;
 
 @RestController
