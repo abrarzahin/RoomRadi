@@ -53,14 +53,41 @@
                                   <div class="form-group">
                                       <div class="col-offset-2 col-10">
                                           <button type="submit" class="btn btn-primary btn-lg">submit</button>
-                                      </div>
-      
-                                  </div>
-                      </form>
+                                </div>
+                         </div>
+                    </form>
+                 </div>
+             </div>
+        <h1>Available Rooms</h1>
+             <div class= "row">
+               <div class= "col-12">
+                 <div class= "table-responsive">
+                   <table class="table">
+                     <tbody>
+                       <tr *ngFor="let room of rooms">
+                         <td>
+                            <img src="src/app/images/intro_room.jpg" alt="Intro Gallery Room Sample Pictures">
+                         </td>
+                         <td>
+                           <strong>Room #:{{room.roomNumber}}</strong><br/>
+                           <strong>price :{{room.price}}</strong>
+                         </td>
+                         <td>
+                           <button type="submit" class="btn btn-primary" (click)="reserveRoom(room.id)">Reserve</button>
+                         </td>
+                       </tr>
+                     </tbody>
+                   </table>
+
+                 </div>
+
                </div>
 
              </div>
-  
+
+
+
+
       </article>
     </div><!-- welcome -->
     <div class="scene" id="hotelinfo">
