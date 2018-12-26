@@ -8,9 +8,6 @@ public class ReservationResponse {
 	private Integer price;
 	private Links links;
 	
-	
-	
-	
 	public ReservationResponse() {
 		super();
 	}
