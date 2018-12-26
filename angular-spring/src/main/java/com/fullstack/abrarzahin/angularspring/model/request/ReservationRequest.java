@@ -6,9 +6,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class ReservationRequest {
 	private Long id;
-	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	@DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
 	private LocalDate checkin;
-	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	@DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
 	private LocalDate checkout;
 	
 	public ReservationRequest() {
@@ -38,6 +38,5 @@ public class ReservationRequest {
 	public void setCheckout(LocalDate checkout) {
 		this.checkout = checkout;
 	}
-	
 	
 }

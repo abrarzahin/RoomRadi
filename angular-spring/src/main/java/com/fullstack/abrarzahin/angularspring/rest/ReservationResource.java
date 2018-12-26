@@ -32,12 +32,13 @@ public class ReservationResource {
 		return new ResponseEntity<>(new ReservationResponse(),HttpStatus.OK);
 		
 	}
-	@RequestMapping(path= "",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE
-			, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@RequestMapping(path = "", method= RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
+			consumes= MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<ReservationResponse> createReservation(
 			@RequestBody
-			ReservationRequest reservationRequest){
-		return new ResponseEntity<>(new ReservationResponse(), HttpStatus.CREATED);
+			ReservationRequest reservationRequest)
+	{
+		return new ResponseEntity<>(new ReservationResponse(),HttpStatus.CREATED);
 	}
 	
 
