@@ -27,6 +27,14 @@ public class RoomEntity {
 		this.roomNumber = roomNumber;
 		this.price = price;
 	}
+	
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public Integer getRoomNumber() {
 		return roomNumber;
 	}
