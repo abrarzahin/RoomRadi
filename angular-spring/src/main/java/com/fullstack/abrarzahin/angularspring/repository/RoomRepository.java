@@ -8,6 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 import com.fullstack.abrarzahin.angularspring.entity.RoomEntity;
 
 public interface RoomRepository extends CrudRepository<RoomEntity, Long> {
-	Optional<RoomEntity> findById(Long id);
+	 RoomEntity  findByNumber(Long id);
 
 }
