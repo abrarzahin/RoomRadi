@@ -1,5 +1,7 @@
 package com.fullstack.abrarzahin.angularspring.entity;
 
+
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,11 +25,13 @@ public class RoomEntity {
 		super();
 	}
 
-	public RoomEntity(@NotNull Integer roomNumber, @NotNull String price) {
+	
+	public RoomEntity( @NotNull Integer roomNumber, @NotNull String price) {
 		super();
 		this.roomNumber = roomNumber;
 		this.price = price;
 	}
+
 
 	public Long getId() {
 		return id;
@@ -54,3 +58,4 @@ public class RoomEntity {
 	}
 
 }
+

@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fullstack.abrarzahin.angularspring.convertor.RoomEntityToReservationResponseConverter;
 import com.fullstack.abrarzahin.angularspring.entity.RoomEntity;
 import com.fullstack.abrarzahin.angularspring.model.request.ReservationRequest;
 import com.fullstack.abrarzahin.angularspring.model.response.ReservationResponse;
 import com.fullstack.abrarzahin.angularspring.repository.PageableRoomRepository;
+
+import convertor.RoomEntityToReservationResponseConverter;
+
 
 
 
@@ -28,7 +30,6 @@ import com.fullstack.abrarzahin.angularspring.repository.PageableRoomRepository;
 @RequestMapping(ResourceConstants.ROOM_RESERVATION_V1)
 
 public class ReservationResource {
-	
 	@Autowired
 	PageableRoomRepository pageableRoomRepository;
 	
@@ -43,8 +44,7 @@ public class ReservationResource {
 			
 			){
 		
-		Page<RoomEntity> roomEntityList= pageableRoomRepository.findAll(pageable);
-		
+		Page<RoomEntity> roomEntityList = pageableRoomRepository.findAll(pageable);
 		return roomEntityList.map(new RoomEntityToReservationResponseConverter());
 		
 	}

@@ -1,5 +1,6 @@
 package com.fullstack.abrarzahin.angularspring.config;
 
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,7 +11,10 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.support.ConversionServiceFactory;
 
-import com.fullstack.abrarzahin.angularspring.convertor.RoomEntityToReservationResponseConverter;
+import convertor.RoomEntityToReservationResponseConverter;
+
+
+
 
 
 @Configuration
@@ -19,6 +23,7 @@ public class ConversionConfig {
 	private Set<Converter> getConverters(){
 		Set<Converter> converters= new HashSet<Converter>();
 		converters.add(new RoomEntityToReservationResponseConverter());
+		
 		return converters ;
 	}
   
