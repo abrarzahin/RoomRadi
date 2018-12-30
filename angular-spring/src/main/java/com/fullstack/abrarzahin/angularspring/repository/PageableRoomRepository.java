@@ -11,5 +11,5 @@ public interface PageableRoomRepository extends  PagingAndSortingRepository<Room
 	Page<RoomEntity> findById(Long id, Pageable page);
 	
 	
-	
+
 }

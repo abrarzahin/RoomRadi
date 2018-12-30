@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fullstack.abrarzahin.angularspring.convertor.RoomEntityToReservationResponseConverter;
 import com.fullstack.abrarzahin.angularspring.entity.RoomEntity;
 import com.fullstack.abrarzahin.angularspring.model.request.ReservationRequest;
 import com.fullstack.abrarzahin.angularspring.model.response.ReservationResponse;
 import com.fullstack.abrarzahin.angularspring.repository.PageableRoomRepository;
+import com.fullstack.abrarzahin.angularspring.repository.RoomRepository;
+
+import convertor.RoomEntityToReservationResponseConverter;
 
 
 
@@ -31,6 +33,9 @@ public class ReservationResource {
 	
 	@Autowired
 	PageableRoomRepository pageableRoomRepository;
+	@Autowired
+	RoomRepository roomRepository;
+	
 	
 	@RequestMapping(path="",method= RequestMethod.GET, produces= MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Page<ReservationResponse> getAvailableRooms(
@@ -43,11 +48,23 @@ public class ReservationResource {
 			
 			){
 		
-		Page<RoomEntity> roomEntityList= pageableRoomRepository.findAll(pageable);
+		Page<RoomEntity> roomEntityList = pageableRoomRepository.findAll(pageable);
 		
-		return roomEntityList.map(new RoomEntityToReservationResponseConverter());
-		
+		return  roomEntityList.map(new RoomEntityToReservationResponseConverter());
 	}
+	@RequestMapping(path = "/{roomId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<RoomEntity> getRoomById(
+			@PathVariable
+			Long roomId
+			){
+		
+		
+		RoomEntity roomEntity= roomRepository.findByNumber(roomId);
+		
+		return new ResponseEntity<>(roomEntity, HttpStatus.OK);
+	}
+	
+	
 	@RequestMapping(path = "", method= RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
 			consumes= MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<ReservationResponse> createReservation(

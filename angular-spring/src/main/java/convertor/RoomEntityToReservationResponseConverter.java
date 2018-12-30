@@ -1,4 +1,5 @@
-package com.fullstack.abrarzahin.angularspring.convertor;
+package convertor;
+
 
 import org.springframework.core.convert.converter.Converter;
 
@@ -20,6 +21,7 @@ public class RoomEntityToReservationResponseConverter implements Converter<RoomE
 		Links links = new Links();
 		Self self = new Self();
 		self.setRef(ResourceConstants.ROOM_RESERVATION_V1 + "/" +source.getId());
+		links.setSelf(self);
 		reservationResponse.setLinks(links);
 		
 		return reservationResponse;

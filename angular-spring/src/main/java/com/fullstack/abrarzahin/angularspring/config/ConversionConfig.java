@@ -10,7 +10,7 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.support.ConversionServiceFactory;
 
-import com.fullstack.abrarzahin.angularspring.convertor.RoomEntityToReservationResponseConverter;
+import convertor.RoomEntityToReservationResponseConverter;
 
 
 @Configuration
