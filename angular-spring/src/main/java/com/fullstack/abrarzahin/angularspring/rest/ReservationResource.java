@@ -3,6 +3,7 @@ package com.fullstack.abrarzahin.angularspring.rest;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -20,6 +21,7 @@ import com.fullstack.abrarzahin.angularspring.entity.RoomEntity;
 import com.fullstack.abrarzahin.angularspring.model.request.ReservationRequest;
 import com.fullstack.abrarzahin.angularspring.model.response.ReservationResponse;
 import com.fullstack.abrarzahin.angularspring.repository.PageableRoomRepository;
+import com.fullstack.abrarzahin.angularspring.repository.RoomRepository;
 
 import convertor.RoomEntityToReservationResponseConverter;
 
@@ -28,10 +30,13 @@ import convertor.RoomEntityToReservationResponseConverter;
 
 @RestController
 @RequestMapping(ResourceConstants.ROOM_RESERVATION_V1)
-
 public class ReservationResource {
 	@Autowired
 	PageableRoomRepository pageableRoomRepository;
+	@Autowired
+	RoomRepository roomRepository;
+	
+	public RoomEntityToReservationResponseConverter converter;
 	
 	@RequestMapping(path="",method= RequestMethod.GET, produces= MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Page<ReservationResponse> getAvailableRooms(
@@ -45,9 +50,29 @@ public class ReservationResource {
 			){
 		
 		Page<RoomEntity> roomEntityList = pageableRoomRepository.findAll(pageable);
-		return roomEntityList.map(new RoomEntityToReservationResponseConverter());
+		
+		
+		return roomEntityList.map(converter::convert);
 		
 	}
+	
+	@RequestMapping(path = "/{roomId}",method= RequestMethod.GET,produces= MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<RoomEntity> getRoomById(
+			@PathVariable
+			Long roomId
+			){
+		
+		roomRepository.findById(roomId);
+		
+		return null;
+		
+		
+	}
+	
+	
+	
+	
+	
 	@RequestMapping(path = "", method= RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
 			consumes= MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<ReservationResponse> createReservation(
