@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fullstack.abrarzahin.angularspring.entity.RoomEntity;
 import com.fullstack.abrarzahin.angularspring.model.request.ReservationRequest;
-import com.fullstack.abrarzahin.angularspring.model.response.ReservationResponse;
+import com.fullstack.abrarzahin.angularspring.model.response.ReservableRoomResponse;
 import com.fullstack.abrarzahin.angularspring.repository.PageableRoomRepository;
 import com.fullstack.abrarzahin.angularspring.repository.RoomRepository;
 
-import convertor.RoomEntityToReservationResponseConverter;
+import convertor.RoomEntityToReservableRoomResponseConverter;
 
 
 
@@ -36,10 +36,10 @@ public class ReservationResource {
 	@Autowired
 	RoomRepository roomRepository;
 	
-	public RoomEntityToReservationResponseConverter converter;
+	public RoomEntityToReservableRoomResponseConverter converter;
 	
 	@RequestMapping(path="",method= RequestMethod.GET, produces= MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Page<ReservationResponse> getAvailableRooms(
+	public Page<ReservableRoomResponse> getAvailableRooms(
 			@RequestParam(value = "checkin")
 			@DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
 			LocalDate checkin,
@@ -75,20 +75,20 @@ public class ReservationResource {
 	
 	@RequestMapping(path = "", method= RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
 			consumes= MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<ReservationResponse> createReservation(
+	public ResponseEntity<ReservableRoomResponse> createReservation(
 			@RequestBody
 			ReservationRequest reservationRequest)
 	{
-		return new ResponseEntity<>(new ReservationResponse(),HttpStatus.CREATED);
+		return new ResponseEntity<>(new ReservableRoomResponse(),HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(path = "", method= RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
 			consumes= MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<ReservationResponse> updateReservation(
+	public ResponseEntity<ReservableRoomResponse> updateReservation(
 			@RequestBody
 			ReservationRequest reservationRequest)
 	{
-		return new ResponseEntity<>(new ReservationResponse(),HttpStatus.OK);
+		return new ResponseEntity<>(new ReservableRoomResponse(),HttpStatus.OK);
 	}
 	
 	@RequestMapping(path= "/{reservationId}", method = RequestMethod.DELETE)

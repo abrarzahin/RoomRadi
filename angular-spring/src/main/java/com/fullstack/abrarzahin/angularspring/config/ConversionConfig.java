@@ -10,23 +10,17 @@ import org.springframework.context.support.ConversionServiceFactoryBean;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.support.ConversionServiceFactory;
-
-import convertor.RoomEntityToReservationResponseConverter;
-
-
-
-
+import convertor.RoomEntityToReservableRoomResponseConverter;
 
 @Configuration
 public class ConversionConfig {
 	
 	private Set<Converter> getConverters(){
 		Set<Converter> converters= new HashSet<Converter>();
-		converters.add(new RoomEntityToReservationResponseConverter());
+		converters.add(new RoomEntityToReservableRoomResponseConverter());
 		
 		return converters ;
 	}
-  
   @Bean
   public ConversionService conversionService() {
 	  ConversionServiceFactoryBean bean = new ConversionServiceFactoryBean();
